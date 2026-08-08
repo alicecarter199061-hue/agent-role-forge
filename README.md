@@ -28,11 +28,7 @@ agent-role-forge/
 
 **把下面这段整段复制，发给你的 agent（Claude / ZCode / Codex / Multica agent 任选）**——它会自动判断平台并装好：
 
-> 请安装 agent-role-forge（角色锻造炉）skill：从 https://github.com/alicecarter199061-hue/agent-role-forge 获取全部文件（SKILL.md、references/、scripts/），并按当前平台安装：
-> - 运行在 ZCode / Claude / Codex → 把目录拷到 skills 目录（ZCode 个人版 `~/.zcode/skills/`，生态版 `~/.agents/skills/`）
-> - 运行在 Multica → 执行 `multica skill import --url https://github.com/alicecarter199061-hue/agent-role-forge`
-> - 想装进 open agent skills 生态 → 执行 `npx skills add alicecarter199061-hue/agent-role-forge -g -y`
-> 装完运行 `python3 <skill路径>/scripts/check.py` 确认输出「结果: 5/5 通过」，并告诉我装到了哪个位置。
+> 请安装 agent-role-forge（角色锻造炉）skill：从 https://github.com/alicecarter199061-hue/agent-role-forge 获取全部文件（SKILL.md、references/、scripts/），按当前平台自动判断装到合适的 skills 位置。如果对装到哪个位置不确定，先问我一句确认再装。装完运行 `python3 <skill路径>/scripts/check.py` 确认输出「结果: 5/5 通过」，并告诉我装到了哪个位置。
 
 更省事的一句：**「帮我安装 agent-role-forge 这个 skill，来源是 github.com/alicecarter199061-hue/agent-role-forge」**
 
