@@ -1,0 +1,36 @@
+# agents/interface.yaml — 意图收敛记录（jan-meta-skill Intent 段产物）
+
+# 触发场景（何时调用）
+triggers:
+  - 用户要创建/设计 agent 角色、persona、系统提示词、角色人设
+  - 用户要造多个角色组成小队/团队/分工协作（team 模式）
+  - 用户要复制某个开源 agent 项目的角色机制到自己项目
+  - 用户在多平台（Multica/WorkBuddy/Codex/Claude/ZCode）需要同一角色的适配定义
+
+# 目标用户
+audience:
+  - 个人：在 Multica/ZCode/Claude/Codex 里反复创建 agent 角色的用户
+  - 团队：需要统一"造角色方法论"并共享给成员的团队
+
+# 输入
+inputs:
+  - 用户的角色需求（目标/触发场景/平台模型/权限/风格）
+  - 可选：任务类型（决定索引匹配）、目标平台、开源参考偏好
+
+# 输出（唯一主产出）
+outputs:
+  - 平台无关通用系统 prompt 文本（Identity/Responsibilities/Boundaries/Tools/Style/Constraints 6 节）
+  - 参考来源清单（每个角色 1-3 条，标注借鉴机制）
+  - team 模式额外输出：角色分工表 + N 份 prompt
+  - 平台接入一步（multica agent create / SOUL.md / toml 等）
+
+# 边界（明确不做）
+boundaries:
+  - 不实际创建角色——只产出定义并展示，创建动作须用户确认
+  - 不替代子 skill 干活（不自己写测试/报告等具体业务）
+  - 禁止原样拷贝开源项目版权文本（机制可借鉴）
+
+# 成功标准（Step 6 完成判据）
+success_criteria:
+  - single: 产出覆盖 6 节 + 来源标注的 1 份 prompt，展示后未执行创建（除非确认）
+  - team: 产出分工表 + 每份 prompt 覆盖 6 节 + 来源标注，展示后未执行创建（除非确认）

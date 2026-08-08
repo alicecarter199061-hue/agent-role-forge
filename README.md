@@ -14,14 +14,26 @@
 
 ```
 agent-role-forge/
-├── SKILL.md                              # 方法论主文件（6 步工作流 + 硬规则）
+├── SKILL.md                              # 方法论主文件（6 步工作流 + 智能调度 single/team + 硬规则）
+├── README.md                             # 本文件（安装/使用/分享）
 ├── references/
-│   ├── agent-oss-index.md                # 内置开源 agent 项目与构建库索引（YC 系 + 框架库）
+│   ├── agent-oss-index.md                # 内置开源 agent 项目与构建库索引（YC 系 + 框架库 + D 节设计模式）
 │   ├── retrieval-methods.md              # GitHub 检索方法（gh search / API 现成命令）
-│   ├── grill-questions.md                # 角色需求审问问题库（必问 5 项 + 补充 5 项）
-│   └── output-template.md                # 通用 prompt 模板 + 各平台接入说明
-└── scripts/
-    └── check.py                          # 自检脚本（5 项校验，零依赖）
+│   ├── grill-questions.md                # 审问问题库（第0步角色结构判断 + 必问5项 + 团队审问 T1-T4）
+│   └── output-template.md                # 通用 prompt 模板 + single/team 输出展示 + 各平台接入
+├── scripts/
+│   ├── check.py                          # 自检脚本（5 项校验，零依赖）
+│   └── publish_check.py                  # 发布治理检查（包验证 + secret 扫描，复用 jan-meta-skill）
+├── tests/
+│   └── trigger_eval.py                   # 触发评测脚本（复用 jan-meta-skill，--selfcheck 自检）
+├── evals/
+│   └── trigger_cases.json                # 触发评测用例（应触发/近邻负例/无关 17 组）
+├── reports/
+│   ├── prior-art-candidates.md           # 同类研究记录（keep/adapt/reject/invent 取舍）
+│   ├── eval-evidence.md                  # 评测证据（触发评测 + 人工复核 + 证据边界）
+│   └── trigger-eval.json                 # 触发评测结果
+└── agents/
+    └── interface.yaml                    # 意图收敛记录（触发/输入/输出/边界/成功标准）
 ```
 
 ## 快速安装（团队推荐 ⭐）

@@ -1,0 +1,127 @@
+{
+  "total": 17,
+  "hits": 14,
+  "misses": 2,
+  "false_positives": 1,
+  "results": [
+    {
+      "query": "帮我造个角色",
+      "note": "口语主场景（description 显式触发词）",
+      "should_trigger": true,
+      "triggered": true,
+      "verdict": "hit"
+    },
+    {
+      "query": "设计一个 agent 角色",
+      "note": "角色设计场景",
+      "should_trigger": true,
+      "triggered": true,
+      "verdict": "hit"
+    },
+    {
+      "query": "帮我做 agent 角色",
+      "note": "口语变体",
+      "should_trigger": true,
+      "triggered": true,
+      "verdict": "hit"
+    },
+    {
+      "query": "设计系统 prompt",
+      "note": "系统提示词场景",
+      "should_trigger": true,
+      "triggered": true,
+      "verdict": "hit"
+    },
+    {
+      "query": "创建 persona",
+      "note": "persona 场景",
+      "should_trigger": true,
+      "triggered": true,
+      "verdict": "hit"
+    },
+    {
+      "query": "造几个角色组成一个小队帮我做项目",
+      "note": "team 模式：多角色/小队",
+      "should_trigger": true,
+      "triggered": false,
+      "verdict": "miss"
+    },
+    {
+      "query": "帮我造一个分工协作的团队，几个 agent 各管一段",
+      "note": "team 模式：分工协作",
+      "should_trigger": true,
+      "triggered": true,
+      "verdict": "hit"
+    },
+    {
+      "query": "角色人设怎么定",
+      "note": "角色人设场景",
+      "should_trigger": true,
+      "triggered": false,
+      "verdict": "miss"
+    },
+    {
+      "query": "帮我把这个角色同时做成 Multica 和 Codex 能用的",
+      "note": "跨平台适配场景",
+      "should_trigger": true,
+      "triggered": true,
+      "verdict": "hit"
+    },
+    {
+      "query": "设计一个 agent 角色的系统提示词",
+      "note": "组合触发词",
+      "should_trigger": true,
+      "triggered": true,
+      "verdict": "hit"
+    },
+    {
+      "query": "帮我优化简历的排版",
+      "note": "近邻负例：优化字样但对象非 agent 角色",
+      "should_trigger": false,
+      "triggered": false,
+      "verdict": "hit"
+    },
+    {
+      "query": "用 agent-role-forge 去抓取网页数据",
+      "note": "近邻负例：调用本 skill 做无关任务",
+      "should_trigger": false,
+      "triggered": true,
+      "verdict": "false-positive"
+    },
+    {
+      "query": "简历里技能 skill 这一栏怎么写",
+      "note": "近邻负例：含 skill 字样但指简历栏目",
+      "should_trigger": false,
+      "triggered": false,
+      "verdict": "hit"
+    },
+    {
+      "query": "把这段流程写进团队文档",
+      "note": "近邻负例：写文档而非造角色",
+      "should_trigger": false,
+      "triggered": false,
+      "verdict": "hit"
+    },
+    {
+      "query": "帮我把这个 PDF 的字体改大一点",
+      "note": "近邻负例：PDF 处理",
+      "should_trigger": false,
+      "triggered": false,
+      "verdict": "hit"
+    },
+    {
+      "query": "帮我订一张明天去上海的机票",
+      "note": "明显无关",
+      "should_trigger": false,
+      "triggered": false,
+      "verdict": "hit"
+    },
+    {
+      "query": "今天天气怎么样",
+      "note": "明显无关",
+      "should_trigger": false,
+      "triggered": false,
+      "verdict": "hit"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 ---
 name: agent-role-forge
-description: 角色锻造炉。创建 agent 角色（persona）前，优先从内置 GitHub 开源 agent 项目与构建库索引取材，检索同类项目，依据实际任务 DIY 出通用系统 prompt 文本，并带审问流程。Use when user wants to 创建/设计 agent 角色、persona、系统提示词、角色人设，或说"帮我造个角色/做个 agent 角色/设计系统 prompt"。跨平台通用：适配 Multica、WorkBuddy、Codex、Claude Code、ZCode 等。
-version: 1.0.0
+description: 角色锻造炉。创建 agent 角色（persona）前，优先从内置 GitHub 开源 agent 项目与构建库索引取材，检索同类项目，依据实际任务 DIY 出通用系统 prompt 文本，并带审问流程。Use when user wants to 创建/设计 agent 角色、persona、系统提示词、角色人设，或说"帮我造个角色/做个 agent 角色/设计系统 prompt"，或要造多个角色组成小队/团队/分工协作（team 模式）。跨平台通用：适配 Multica、WorkBuddy、Codex、Claude Code、ZCode 等。
+version: 1.3.2
 snapshot_date: 2026-08-08
 metadata:
   origin: personal
