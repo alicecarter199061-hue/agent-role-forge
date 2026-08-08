@@ -4,6 +4,8 @@
 
 跨平台通用：适配 **Multica / WorkBuddy / Codex / Claude Code / ZCode** 等场景。
 
+> 命名对应：本仓库（团队分享）用英文名 `agent-role-forge`；个人 ZCode 环境入库后为 `09.06·Agent治理·agent-role-forge`（同一内容，见文末「安装·本机个人版」）。
+
 ## 为什么有这个工具
 
 凭空设计角色容易"假大空"。开源世界里每个成熟的 agent 项目（OpenHands、CrewAI、Mem0、LangGraph…）都沉淀了可借鉴的**角色机制**——指令风格、边界写法、工具策略、记忆结构。本 skill 把这一套取材流程固化下来：内置索引 + 检索方法 + 审问 + DIY + 通用 prompt 输出。
@@ -41,6 +43,9 @@ npx skills add <owner>/agent-role-forge -g -y
 ```bash
 multica skill import --url <本仓库 GitHub URL>
 ```
+
+### 方式 4：本机个人版（ZCode 治理入库版）
+个人 ZCode 环境：已按「Agent治理·skill-入库」规范迁入 `~/.zcode/skills/09.06·Agent治理·agent-role-forge/`（中文命名 + 进 `09.01·Agent治理` 伞 + 6 步工作流含完成判据）。重启 ZCode 后 `/` 菜单可见。
 
 ## 使用
 

@@ -66,6 +66,8 @@ metadata:
 
 审问原则：不问废话，已明确的项跳过；用户说"直接干/轻量"时降级为 1 轮快速确认（只问目标 + 边界）。
 
+**Step 1 完成判据**：产出「角色需求卡」且必问 5 项（目标/触发场景/平台模型/权限/风格）均有明确答案；有缺项则继续审问。
+
 ### Step 2 — 查内置索引
 
 在 `references/agent-oss-index.md` 中按**任务类型**匹配候选：
@@ -77,6 +79,8 @@ metadata:
 - 任务是**编排/多代理** → LangGraph、CrewAI、AutoGen、Agno
 
 选中 1~3 个高度相关条目，记录其"可借鉴机制"。
+
+**Step 2 完成判据**：已选中 1~3 个候选并写下各自"可借鉴机制"；索引未命中则显式标注"未命中，走 Step 3"。
 
 ### Step 3 — 检索同类（兜底 + 补充）
 
@@ -95,6 +99,8 @@ gh search repos "<关键词> system prompt" --limit 10 --sort stars
 
 无 gh 时用 GitHub API：`curl -s "https://api.github.com/search/repositories?q=<关键词>+agent&sort=stars&per_page=10"`。
 
+**Step 3 完成判据**：检索返回 ≥1 个可用候选；网络失败则记录降级（标注"无检索结果，基于通用模板 DIY"）后进入 Step 4。
+
 ### Step 4 — 取材参考
 
 对 Step 2/3 选中的候选，用只读方式取真实内容（**不 clone 全库**）：
@@ -109,6 +115,8 @@ gh api repos/<owner>/<repo>/contents --jq '.[].name'
 
 提炼 3~5 条**可借鉴机制**（角色指令风格 / 边界写法 / 工具策略 / 记忆结构），记录来源。
 
+**Step 4 完成判据**：已提炼 3~5 条机制且每条带来源标注；不足 3 条则回 Step 3 补充候选或接受 1~2 条。
+
 ### Step 5 — DIY 角色（产出通用 prompt）
 
 按 `references/output-template.md` 的结构产出**平台无关通用 prompt 文本**：
@@ -122,11 +130,15 @@ gh api repos/<owner>/<repo>/contents --jq '.[].name'
 
 每条机制在 prompt 旁标注来源（`参考: OpenHands 的 <机制>`），让用户知道灵感从哪来。
 
+**Step 5 完成判据**：产出 prompt 覆盖 output-template 的全部 6 节（Identity/Responsibilities/Boundaries/Tools/Style/Constraints），且每条借鉴机制带来源标注。
+
 ### Step 6 — 展示 + 确认
 
 - 输出：完整通用 prompt 文本 + 参考来源清单 + 可借鉴机制摘要
 - 附各平台接入一步（引用 `references/output-template.md` 的适配小节，如 `multica agent create --instructions "..."`、WorkBuddy 写 SOUL.md 等）
 - **不实际创建**，等用户确认；用户说"创建"才调平台命令
+
+**Step 6 完成判据**：已展示 prompt + 来源 + 平台接入一步，且未执行任何创建动作（除非用户显式确认）。
 
 ## 硬规则
 
