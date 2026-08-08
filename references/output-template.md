@@ -51,8 +51,12 @@ multica agent create \
   --description "<一句话描述，≤255 字符，仅目录展示>" \
   --instructions "<上面的通用 prompt 全文>"
 
-# 挂 skill（如有需要）
-multica agent skills add <agent-id> --skill-ids <skill-id>
+# 挂 skill（⚠️ 必做：agent create 本身不挂 skill，创建后必须单独挂载，
+#   否则成员裸奔无能力——团队模式最常见的坑）
+multica agent skills add <agent-id> --skill-ids <skill-id-1>,<skill-id-2>
+
+# 验证挂载成功（skills 非空）
+multica agent get <agent-id>
 
 # 查看本机 runtime
 multica runtime list
@@ -120,5 +124,7 @@ tools: <允许的工具列表>
 3. **参考来源清单**：`来源仓库/模式 → 借鉴机制`（每个角色 1-3 条）
 4. **平台接入**：每角色 1 条接入命令（如逐个 `multica agent create`），可给一条批量脚本
 5. **确认**："要我在 <平台> 逐个创建这 N 个角色吗？"——等用户确认才执行
+
+> **批量脚本必须包含挂载步骤**（Multica 场景）：`agent create` 后紧跟 `agent skills add`，逐角色挂对应 skill，并用 `agent get` 验证 skills 非空后再创建下一个。参考分工表「专属工具/权限」列决定每个角色挂哪些 skill。
 
 > team 模式创建顺序建议：先建总指挥/调度角色（如需要），再建执行角色——让编排角色先就位。参考 D1 编排方案选型（独立编排角色为企业级标准）。
