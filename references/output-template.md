@@ -1,0 +1,101 @@
+# 通用 prompt 输出模板 + 平台接入说明
+
+## 一、通用系统 prompt 结构（平台无关）
+
+按以下结构产出**通用 prompt 文本**（建议正文用英文关键词保证跨平台稳定，说明文字跟随对话语言）。每条机制旁标注参考来源（`参考: <项目> 的 <机制>`），让用户知道灵感从哪来。
+
+```markdown
+# <角色名> — <一句话定位>
+
+## Identity（身份）
+- 你是谁：<角色名>，<一句话身份>
+- 定位：<这个 agent 存在的理由，来自审问"目标">
+
+## Responsibilities（职责）
+- 核心任务：<主任务 1-3 条>
+- 工作流：<主流程步骤，参考开源机制的裁剪版>
+- 成功标准：<完成到什么程度算成功>
+
+## Boundaries（边界）
+- 不做：<明确禁止做的事，来自审问"禁忌">
+- 权限：允许 <…> / 禁止 <…>（来自审问"权限"）
+
+## Tools & Permissions（工具与权限）
+- 可用工具：<列表>
+- 敏感操作：<外部动作必须经用户确认才执行>
+
+## Style（风格）
+- 语气：<来自审问"风格">
+- 篇幅与格式：<输出习惯>
+
+## Constraints（约束）
+- 安全：<数据、隐私、外部发布边界>
+- 失败处理：<不会/失败时怎么办>
+- 通用规则：<平台无关的硬约束>
+
+---
+
+参考来源：
+- <仓库 full_name> — <借鉴了它的什么机制>
+```
+
+## 二、各平台接入说明
+
+### Multica
+```bash
+# 创建 agent（通用 prompt 放 --instructions）
+multica agent create \
+  --name "<角色名>" \
+  --runtime-id "<runtime-id>" \
+  --model "<model>" \
+  --description "<一句话描述，≤255 字符，仅目录展示>" \
+  --instructions "<上面的通用 prompt 全文>"
+
+# 挂 skill（如有需要）
+multica agent skills add <agent-id> --skill-ids <skill-id>
+
+# 查看本机 runtime
+multica runtime list
+```
+注意：Multica 中 `description` 仅目录展示（≤255 码点），**真正注入运行时的是 `instructions`**——persona/边界放 instructions。
+
+### WorkBuddy（人格文件）
+WorkBuddy 角色 = 工作区人格文件（`~/.workbuddy/`）：
+- `SOUL.md` — 你是谁（价值观/边界/语气），对应通用 prompt 的 Identity + Style + Constraints
+- `IDENTITY.md` — 名字/物种/vibe/emoji 元信息
+- `USER.md` — 用户画像
+- `BOOTSTRAP.md` — 首次对话引导
+将通用 prompt 拆写进 SOUL.md（核心）+ IDENTITY.md（元信息）。
+
+### Codex（~/.codex/agents/*.toml）
+```toml
+# ~/.codex/agents/<角色名>.toml
+[agent]
+name = "<角色名>"
+description = "<触发描述>"
+developer_instructions = """<通用 prompt 全文>"""
+```
+
+### Claude Code（subagents）
+```markdown
+# 在项目的 .claude/agents/<角色名>.md 下
+---
+name: <角色名>
+description: <触发描述>
+tools: <允许的工具列表>
+---
+<通用 prompt 全文>
+```
+
+### ZCode / Claude Code 全局（skill 或 AGENTS.md）
+- 作为 skill：放 `~/.agents/skills/<角色名>/SKILL.md`，frontmatter 写 `name` + `description`（中英双语）。
+- 作为全局指令：追加到 `AGENTS.md` 相关小节。
+
+## 三、输出展示格式（Step 6）
+
+最终向用户展示：
+
+1. **通用 prompt 文本**（上节模板渲染结果）
+2. **参考来源清单**：`来源仓库 → 借鉴机制`（3~5 条）
+3. **平台接入**：按目标平台给 1 条接入命令/路径（引用本节）
+4. **确认**："要我在 <平台> 创建这个角色吗？"——等用户确认才执行创建
