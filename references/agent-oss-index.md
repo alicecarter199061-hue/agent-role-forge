@@ -27,6 +27,7 @@
 
 | 项目 | Stars | 定位 | 可借鉴的角色机制 |
 |---|---|---|---|
+| **Agency Agents** (msitarzewski/agency-agents) | ~139K | "完整 AI 机构"：232 个现成 frontmatter agent + 19+ division（工程/金融/营销/设计/医疗/销售等），MIT | **现成角色定义取材源**：232 个 agent 的 name/description/instructions 结构可直接参考裁剪；division 按行业/职能分类角色的组织方式；Codex 集成 scripts/convert.sh（生成 agents/*.toml）。优先试用：minimal-change-engineer、code-reviewer、prompt-engineer、multi-agent-systems-architect |
 | **LangGraph** (langchain-ai/langgraph) | ~39K | 图状态机式 agent 编排，"构建有韧性的 agent" | 角色 = 状态机：定义状态、节点、边；把角色拆成"状态-转移"的写法 |
 | **CrewAI** (crewAIInc/crewAI) | ~57K | 角色扮演多 agent 协作框架 | 角色 = Role/Goal/Backstory 三段式定义（最贴近"角色"的模板）；多角色协作分工 |
 | **Microsoft AutoGen** (microsoft/autogen) | ~60K | agentic AI 编程框架 | 对话式多 agent：角色之间以消息交互的模式 |
